@@ -19,7 +19,7 @@
     <meta name="description" content="Tai-Yun Design & Tai-Yun Chen's Portfolio, 這是陳泰運的線上作品集" />
     <meta name="author" content="Tai-Yun Chen, 陳泰運">
     <meta name="copyright" content="Tai-Yun Design, Tai-Yun Chen, 陳泰運" />
-    <title>TAI-YUN DESIGN | Protfolio 2016</title>
+    <title>UI/GRAPHIC | TAI-YUN DESIGN Protfolio 2016</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link href="css/style.css" rel="stylesheet">
     <!--[if lt IE 9]>
@@ -47,7 +47,7 @@
 
     </script>
   </head>
-  <body class="Home">
+  <body class="Graphic">
     <div class="Container animsition">
       <main>
         
@@ -55,10 +55,36 @@
 
 
 
-<div class="pg-index main-content">
+
+    <div class="pg-graphic main-content">
         <div class="main-title">
-          <h1 class="heading">TAI-YUN DESIGN</h1>
-          <h3 class="heading-sub">Protfolio 2016</h3>
+          <!-- <h1>UI/GRAPHIC</h1> -->
+          <div id="gallery" class="gp-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+			  <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+			  	<a href="images/graphic/gp-01.jpg" itemprop="contentUrl"><img src="images/graphic/gp-01-r.jpg" itemprop="thumbnail" title="Kindergarten APP UI" /></a>
+			  </figure>
+			  <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+			  	<a href="images/graphic/gp-02.jpg" itemprop="contentUrl"><img src="images/graphic/gp-02-r.jpg" itemprop="thumbnail" title="O2O Series Logo" /></a>
+			  </figure>
+			  <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+			  	<a href="images/graphic/gp-03.jpg" itemprop="contentUrl"><img src="images/graphic/gp-03-r.jpg" itemprop="thumbnail" title="iCalling Logo" /></a>
+			  </figure>
+			  <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+			  	<a href="images/graphic/gp-04.jpg" itemprop="contentUrl"><img src="images/graphic/gp-04-r.jpg" itemprop="thumbnail" title="Tomato Digital Logo Proposal" /></a>
+			  </figure>
+			  <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+			  	<a href="images/graphic/gp-05.jpg" itemprop="contentUrl"><img src="images/graphic/gp-05-r.jpg" itemprop="thumbnail" title="eCard of Chinese New Year" /></a>
+			  </figure>
+			  <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+			  	<a href="images/graphic/gp-06.jpg" itemprop="contentUrl"><img src="images/graphic/gp-06-r.jpg" itemprop="thumbnail" title="eCard of Christmas" /></a>
+			  </figure>
+			  <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+			  	<a href="images/graphic/gp-07.jpg" itemprop="contentUrl"><img src="images/graphic/gp-07-r.jpg" itemprop="thumbnail" title="Company Gift Design" /></a>
+			  </figure>
+			  <figure class="item" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+			  	<a href="images/graphic/gp-08.jpg" itemprop="contentUrl"><img src="images/graphic/gp-08-r.jpg" itemprop="thumbnail" title="Spotify DM" /></a>
+			  </figure>
+			</div>
         </div>
       </div>
       </main>    
@@ -76,12 +102,12 @@
 				<nav>
 					<ul class="primary-nav">
 						<li><a href="website.html" class="animsition-link "><span data-letters="Website">Website</span></a></li>
-						<li><a href="graphic.html" class="animsition-link "><span data-letters="UI/Graphic">UI/Graphic</span></a></li>
+						<li><a href="graphic.html" class="animsition-link selected"><span data-letters="UI/Graphic">UI/Graphic</span></a></li>
 						<li><a href="http://ubechen-notebook.site44.com/" class="animsition-link outside" target="_blank"><span data-letters="Portfolio 2014">Portfolio 2014</span></a></li>
 						<li><a href="http://taiyun-portfolio.site44.com/" class="animsition-link outside" target="_blank"><span data-letters="Portfolio 2008">Portfolio 2008</span></a></li>
 						<li class="divider"></li>
 						<li><a href="about.html" class="animsition-link "><i class="fa fa-smile-o"></i><span data-letters="About Me">About Me</span></a></li>
-						<li><a href="index.html" class="animsition-link selected"><i class="fa fa-home"></i><span data-letters="Home">Home</span></span></a></li>
+						<li><a href="index.html" class="animsition-link "><i class="fa fa-home"></i><span data-letters="Home">Home</span></span></a></li>
 					</ul>
 				</nav>
 			</div>
@@ -111,18 +137,8 @@
   <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
   <script type="text/javascript" src="js/modernizr.js"></script>
   <script type="text/javascript" src="js/jquery.nicescroll.min.js"></script>
-  <script type="text/javascript" src="js/animsition.min.js"></script><script type="text/javascript" src="js/vegas.min.js"></script>
+  <script type="text/javascript" src="js/animsition.min.js"></script><script type="text/javascript" src="js/jquery.photobox.js"></script>
   <script type="text/javascript" src="js/script.js"></script><script>
-	$(function() {
-	    $('main').vegas({
-	    	overlay: true,
-	        slides: [
-	            { src: 'images/bg-index1.jpg' },
-	            { src: 'images/bg-index2.jpg' },
-	            { src: 'images/bg-index3.jpg' }
-	        ]
-	    });
-	});
+	$("#gallery").photobox();
   </script>
-
 </html>

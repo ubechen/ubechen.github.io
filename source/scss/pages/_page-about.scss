@@ -1,0 +1,105 @@
+.About {
+	background: $color-about url("../images/bg-paper-about.jpg") 0 0 repeat;
+      main:before {
+            display: none;
+      }
+}
+.main-area {
+      .half-block {
+            text-align: left;
+            &:first-child {
+                  .half-block-wrapper {
+                        margin-top: 110px;
+                  }  
+            }
+            &:last-child {
+                  margin-top: 1em;
+                  margin-bottom: 2em;
+                  .half-block-wrapper {
+                        width: 85%;
+                        margin-left: 5%;
+                  }
+            }
+      }
+      .half-block-wrapper {
+            @extend %clearfix;
+            width: 80%;
+            margin-left: 10%;
+            .title-name {
+                  font-size: 3rem;
+                  color: #fff;
+                  text-align: left;
+                  margin-bottom: .3em;
+                  &.en {
+                        font-family: 'Lobster', cursive;
+                  }
+                  &.tw {
+                        letter-spacing: 3px;
+                  }
+            }
+            .intro {
+                  @extend %clearfix;
+                  margin-top: 25px;
+                  padding: 25px 0;
+                  border-top: 1px solid #fff;
+                  .title-works {
+                        color: $color-website;
+                        span {
+                              padding: 0 10px;
+                              &.w-two {
+                                 color: $color-index; 
+                              }
+                        }
+                  }
+                  .title-works, .intro-p {
+                        float: left;
+                  }
+                  .title-works {
+                        margin-bottom: 10px;
+                        font-style: oblique;
+                  }
+                  .intro-p {
+                        color: $color-nav;
+                        font-size: 1.1rem;
+                        padding: 0 10px;
+                        margin: 1em auto;
+                        width: 95%;
+                        line-height: 1.8;
+                        font-weight: 300;
+                  }
+            }
+            .bxslider li > img {
+                  max-width: 500px;
+            }
+      }
+      @include MQ(M) {
+            .half-block {
+                  @include column(.5);
+                  &:first-child {
+                        .half-block-wrapper {
+                              margin-top: 0;
+                        }  
+                  }
+                  &:last-child {
+                        margin-top: 0;
+                        .half-block-wrapper {
+                              margin-top: 110px;
+                        }
+                  }
+            }
+            .half-block-wrapper {
+                  margin-left: 17%; 
+                  h2 {
+                       
+                  }
+            }
+      }
+      @include MQ(L) {
+            .half-block-wrapper {
+                  margin-left: 20%;
+            }
+      }
+}
+.bx-wrapper .bx-viewport {
+      @include border-radius(50%);
+}

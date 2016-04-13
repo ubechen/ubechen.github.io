@@ -1,0 +1,39 @@
+.btn {
+	@extend %trans-all-02;
+}
+
+#back-top {
+	position: fixed;
+	bottom: 30px;
+	right: 30px;
+	display: block;
+	z-index: 2000;
+	a {
+		display: block;
+		font-size: 3em;
+		text: { 
+			align: center;
+			decoration: none;
+		}
+		@extend %trans-all-02;
+		i {
+			display: block;
+			color: $a-color-hover;
+			opacity: .7;
+			@extend %trans-all-02;
+		}
+		&:hover {
+			i {
+				color: $a-color-active;
+				opacity: .8;
+			}
+		}
+		&:active {
+			@extend %active;
+			i {
+				color: $a-color-active;
+				opacity: 1;
+			}
+		}
+	}
+}

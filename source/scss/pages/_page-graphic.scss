@@ -1,0 +1,44 @@
+.Graphic {
+	background: $color-graphic url("../images/bg-paper-graphic.jpg") 0 0 repeat;
+	main:before {
+		display: none;
+	}
+}
+
+.gp-gallery {
+	@extend %clearfix;
+	width: 80%;
+	margin: 0 auto;
+	position: relative;
+	z-index: 10;
+	overflow: hidden;
+	background: #ccc;
+	box-shadow: 5px 5px 15px rgba(0, 93, 80,.8);
+	.item {
+		width: 50%;
+		display: inline-block;
+		float: left;
+		> a {
+			display: block;
+			&:hover {
+				opacity: .8;
+				cursor: zoom-in;
+			}
+		}
+		figcaption {
+			display: none;
+		}
+		&.item-menu {
+			width: 32%;
+			float: left;
+			margin-right: 2%;
+			margin-bottom: 2%;
+			&:nth-child(3n) {
+				margin-right: 0;
+			}
+		}
+		@include MQ(M) {
+			width: 25%;
+		}
+	}
+}

@@ -1,0 +1,403 @@
+main {
+  h1, p {
+    text-align: center;
+  }
+  h1 {
+    font-size: 2.6rem;
+    margin-bottom: 1em;
+  }
+  p {
+    color: #d6dfdb;
+    max-width: 450px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.navigation-is-open main {
+	@include transform(translateX(100%));
+}
+
+@include MQ(M) {
+  main {
+    padding: 250px 10%;
+    h1 {
+      font-size: 3.6rem;
+    }
+    p {
+      font-size: 2rem;
+    }
+  }
+}
+
+.nav-trigger {
+  position: fixed;
+  z-index: 3;
+  left: 5%;
+  top: 35px;
+  height: 54px;
+  width: 54px;
+  background-color: $color-nav;
+  border-radius: 50%;
+  //image replacement
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  @include transition(transform $animation-duration - 0.2s);
+  .nav-icon {
+    //icon created in CSS
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    bottom: auto;
+    right: auto;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -o-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: 22px;
+    height: 2px;
+    background-color: #ffffff;
+    &::before, &:after {
+       //upper and lower lines of the menu icon
+       content: '';
+       position: absolute;
+       top: 0;
+       right: 0;
+       width: 100%;
+       height: 100%;
+       background-color: inherit;
+       //Force Hardware Acceleration in WebKit
+       @include transform(translateZ(0));
+	   -webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		@include transition(transform $animation-duration - 0.2s, width $animation-duration - 0.2s, top .3s);
+    }
+    &::before {
+      -webkit-transform-origin: right top;
+      -moz-transform-origin: right top;
+      -ms-transform-origin: right top;
+      -o-transform-origin: right top;
+      transform-origin: right top;
+      @include transform(translateY(-6px));
+    }
+    &::after {
+      -webkit-transform-origin: right bottom;
+      -moz-transform-origin: right bottom;
+      -ms-transform-origin: right bottom;
+      -o-transform-origin: right bottom;
+      transform-origin: right bottom;
+      @include transform(translateY(6px));
+    }
+  }
+}
+
+.no-touch .nav-trigger:hover .nav-icon {
+  &::after {
+    top: 2px;
+  }
+  &::before {
+    top: -2px;
+  }
+}
+
+.nav-trigger {
+  svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  circle {
+    //circle border animation
+    @include transition(stroke-dashoffset $animation-duration - 0.3s 0s);
+  }
+}
+
+.navigation-is-open .nav-trigger {
+  //rotate trigger when navigation becomes visible
+  @include transform(rotate(180deg));
+  .nav-icon {
+  	&::after, &::before {
+  		width: 50%;
+		@include transition(transform $animation-duration - 0.2s, width $animation-duration - 0.2s);
+  	}
+    &::before {
+      @include transform(rotate(45deg));
+    }
+    &::after {
+      @include transform(rotate(-45deg));
+    }
+  }
+}
+
+.no-touch .navigation-is-open .nav-trigger:hover .nav-icon {
+  &::after, &::before {
+    top: 0;
+  }
+}
+
+.navigation-is-open .nav-trigger circle {
+  stroke-dashoffset: 0;
+  @include transition(stroke-dashoffset $animation-duration - 0.3s 0.3s);
+}
+
+@include MQ(L) {
+  .nav-trigger {
+    top: 40px;
+  }
+}
+
+.nav {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: $color-nav;
+	visibility: hidden;
+	@include transition(visibility 0s $animation-duration);
+  	.navigation-wrapper {
+	    //all navigation content
+	    height: 100%;
+	    overflow-y: auto;
+	    -webkit-overflow-scrolling: touch;
+	    padding: 40px 5% 40px calc(5% + 80px);
+	    //Force Hardware Acceleration in WebKit
+		@include transform(translateZ(0));
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		@include transform(translateX(-50%));
+		@include transition(transform $animation-duration);
+		@include transition-timing-function(cubic-bezier(.86,.01,.77,.78));
+	}
+  	.half-block {
+		opacity: 0;
+		text-align: left;
+		@include transition(opacity 1s);
+		&:last-child {
+			margin-top: 3em;
+		}
+            .copyright {
+                  color: lighten($color-nav, 50%);
+            }
+	}
+	.navigation-is-open & {
+		visibility: visible;
+		@include transition(visibility 0s 0s);
+		.navigation-wrapper {
+			@include transform(translateX(0));
+			@include transition(transform $animation-duration - 0.2s);
+			@include transition-timing-function(cubic-bezier(.82,.01,.77,.78));
+		}
+		.half-block {
+			opacity: 1;
+		}
+	}
+	h2 {
+		position: relative;
+		margin-bottom: 1.7em;
+		font-size: 1.3rem;
+		font-weight: 800;
+		color: #4fc3f7;
+		text-transform: uppercase;
+		&::after {
+			//bottom separation line
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: -15px;
+			height: 1px;
+			width: 60px;
+			background-color: currentColor;
+		}
+	}
+	.primary-nav {
+		margin-top: 0;
+		li {
+			margin: 1.2em 0;
+			&.divider {
+				position: relative;
+				height: 1px;
+				&:before {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 80%;
+					height: 1px;
+					background: #666;
+				}
+			}
+		}
+		a {
+			font-family: $fonts;
+			font-size: 1.6rem;
+			color: rgba($white, .3);
+			position: relative;
+			display: inline-block;
+			overflow: hidden;
+			outline: none;
+			text-decoration: none;
+			padding: 0 6px;
+			&.selected {
+				color: #fff;
+			}
+			.no-touch &:hover {
+				color: rgba($white, .3);
+			}
+			> i {
+				margin-right: 10px;
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				height: 100%;
+				width: 100%;
+				top: 0;
+				right: 0;
+				z-index: -1;
+				background: rgba(black, .3);
+				-webkit-transform: translate3d(101%,0,0);
+				transform: translate3d(101%,0,0);
+				-webkit-transition: -webkit-transform 0.5s;
+				transition: transform 0.5s;
+				-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+				transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+			}
+			&:hover::after {
+				-webkit-transform: translate3d(0,0,0);
+				transform: translate3d(0,0,0);
+			}
+			span {
+				// display: block;
+				position: relative;
+				&::before {
+					content: attr(data-letters);
+					position: absolute;
+					color: #fff;
+					left: 0;
+					overflow: hidden;
+					white-space: nowrap;
+					width: 0%;
+					-webkit-transition: width 0.5s;
+					transition: width 0.5s;
+					-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+					transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+				}
+			}
+			&:hover span::before {
+				width: 100%;
+			}
+		}
+	}
+	.contact-info {
+		margin-top: 0;
+		li {
+			font-family: $fonts;
+			margin-bottom: .75em;
+			line-height: 1.2;
+			color: rgba($white, .3);
+			&.divider {
+				position: relative;
+				height: 1px;
+				&:before {
+					content: '';
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 80%;
+					height: 1px;
+					background: #666;
+				}
+			}
+		}
+		a {
+			color: #ccc;
+		}
+		span {
+			display: block;
+		}
+		li, a, span {
+			font-size: 1.2rem;
+			font-weight: normal;
+		}
+		ul {
+			@extend %clearfix;
+		}
+		ul > li {
+			display: inline-block;
+			float: left;
+			margin-right: 15px;
+			> a {
+				font-size: 2rem;
+			}
+		}
+	}
+	@include MQ(M) {
+		.half-block {
+			@include column(.5);
+			&:last-child {
+				margin-top: 0;
+			}
+		}
+		.primary-nav li {
+			margin: 1.6em 0;
+		}
+		.contact-info li {
+			margin-bottom: 1.5em;
+		}
+	}
+	@include MQ(L) {
+		.navigation-wrapper {
+			padding: 62px 20%;
+		}
+		.primary-nav {
+			margin-top: 0;
+		}
+		h2 {
+			font-size: 1.5rem;
+			margin-bottom: 2em;
+		}
+		.primary-nav {
+			li {
+				margin: 1.8em 0;
+			}
+			a {
+				font-size: 1.6rem;
+			}
+		}
+		.contact-info {
+			margin-top: 0;
+			text-align: left;
+			li {
+				margin-bottom: 1em;
+			}
+			li, a, span {
+				font-size: 1.2rem;
+			}
+		}
+	}
+}
+
+// .no-touch .nav .primary-nav a:hover {
+//   color: #ffffff;
+// }
+
+.no-js {
+  main {
+    height: auto;
+    overflow: visible;
+  }
+  .nav {
+    position: static;
+    visibility: visible;
+    .navigation-wrapper {
+      height: auto;
+      overflow: visible;
+      padding: 100px 5%;
+      @include transform(translateX(0));
+    }
+  }
+}
