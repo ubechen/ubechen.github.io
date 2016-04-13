@@ -1,0 +1,537 @@
+.Website {
+	background: $color-website url("../images/bg-paper-website.jpg") 0 0 repeat;
+	main:before {
+		display: none;
+	}
+	.body-title {
+		margin-left: -190px;
+	}
+}
+.projects-container {
+	// height: 100vh;
+	// width: 100vw;
+	width: 100%;
+	height: calc(100vh - 20px);
+	position: relative;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	&::before {
+		// never visible - this is used in jQuery to check the current MQ
+		content: 'mobile';
+		display: none;
+	}
+	.single-project {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%/$items;
+	    	overflow: hidden;
+		cursor: pointer;
+		@include transition(transform 0.4s);
+		// on mobile -  move items outside the viewport
+		@include transform(translateX(-100%));
+	    	&::after {
+	    		// background image
+	    		content: '';
+	    		position: absolute;
+	    		top: 0;
+	    		left: 0;
+	    		// height: 100vh/$items;
+	    		height: calc((100vh - 20px)/6);
+	    		width: 100%;
+	    		background-image: url('../images/website/img-1-small.jpg');
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: cover; 
+			@include transition(opacity 0.5s, height 0.4s);
+	    	}
+	    	&::before {
+	    		// never visible - this is used in jQuery to detect if the background image has been loaded 
+			content: 'images/website/img-1-small.jpg';
+			display: none;
+	    	}
+		&:nth-of-type(2) {
+			// top: 100vh/$items;
+			top: calc((100vh - 20px)/6);
+			&::after {
+				background-image: url('../images/website/img-2-small.jpg'); 
+			}
+			&::before {
+				content: 'images/website/img-2-small.jpg';
+			}
+		}
+		&:nth-of-type(3) {
+			// top: 100vh*2/$items;
+			top: calc((100vh - 20px)/6 *2);
+			&::after {
+				background-image: url('../images/website/img-3-small.jpg'); 
+			}
+			&::before {
+				content: 'images/website/img-3-small.jpg';
+			}
+		}
+		&:nth-of-type(4) { 
+			// top: 100vh*3/$items;
+			top: calc((100vh - 20px)/6 *3);
+			&::after {
+				background-image: url('../images/website/img-4-small.jpg'); 
+			} 
+			&::before {
+				content: 'images/website/img-4-small.jpg';
+			}
+		}
+		&:nth-of-type(5) { 
+			// top: 100vh*4/$items;
+			top: calc((100vh - 20px)/6 *4);
+			&::after {
+				background-image: url('../images/website/img-5-small.jpg'); 
+			} 
+			&::before {
+				content: 'images/website/img-5-small.jpg';
+			}
+		}
+		&:nth-of-type(6) { 
+			// top: 100vh*5/$items;
+			top: calc((100vh - 20px)/6 *5);
+			&::after {
+				background-image: url('../images/website/img-6-small.jpg'); 
+			} 
+			&::before {
+				content: 'images/website/img-6-small.jpg';
+			}
+		}
+		&.is-loaded {
+			// move items in the viewport when background images have been loaded
+			@include transform(translateX(0));
+			&:hover .pj-title h2 {
+		    		color: #fff;
+		    	}
+		}
+		&.is-full-width {
+			// selected item
+			top: 0;
+			height: auto;
+			z-index: 1;
+			cursor: auto;
+			@include transition(z-index 0s 0s, top 0.4s 0s);
+			&::after {
+				height: 100vh;
+			}
+		}
+		&.is-full-width .pj-title {
+			top: 50vh;
+			@include border-radius(50%);
+			@include transition(opacity 0s, top 0.4s);
+			left: 50%;
+			margin-left: -150px;
+			width: 300px;
+			height: 300px;
+			background: rgba($color-website,.8);
+			opacity: 1;
+			h2, p {
+				display: block;
+				color: #fff;
+				position: relative;
+			}
+			h2 {
+				top: 30%;
+				padding: 0;
+				background: none;
+			}
+			p {
+				top: 25%;
+				opacity: .8;
+			}
+		}
+	}
+	@include MQ(M) {
+		&::before {
+			// never visible - this is used in jQuery to check the current MQ
+			content: 'desktop';
+		}
+		.single-project {
+			width: 100%/$items;
+			height: 100%;
+			opacity: 0;
+			@include transform(translateX(0));
+			@include transition(width 0s);
+			&:first-of-type::before {
+				content: 'images/website/img-1-large.jpg';
+			}
+			&:first-of-type::after {
+				background-image: url('../images/website/img-1-large.jpg'); 
+			}
+			&:nth-of-type(2) {
+				top: 0;
+				left: 100%/$items;
+				// left: calc(100%/$items-20px);
+				&::before {
+					content: 'images/website/img-2-large.jpg';
+				}
+				&::after {
+					background-image: url('../images/website/img-2-large.jpg'); 
+				} 
+			}
+			&:nth-of-type(3) {
+				top: 0;
+				left: 100%*2/$items;
+				// left: calc(100%/$items-20px)*2;
+				&::before {
+					content: 'images/website/img-3-large.jpg';
+				} 
+				&::after {
+					background-image: url('../images/website/img-3-large.jpg'); 
+				}
+			}
+			&:nth-of-type(4) { 
+				top: 0;
+				left: 100%*3/$items;
+				// left: calc(100%/$items-20px)*3;
+				&::before {
+					content: 'images/website/img-4-large.jpg';
+				} 
+				&::after {
+					background-image: url('../images/website/img-4-large.jpg'); 
+				}
+			}
+			&:nth-of-type(5) { 
+				top: 0;
+				left: 100%*4/$items;
+				// left: calc(100%/$items-20px)*4;
+				&::before {
+					content: 'images/website/img-5-large.jpg';
+				} 
+				&::after {
+					background-image: url('../images/website/img-5-large.jpg'); 
+				}
+			}
+			&:nth-of-type(6) { 
+				top: 0;
+				left: 100%*5/$items;
+				// left: calc(100%/$items-20px)*5;
+				&::before {
+					content: 'images/website/img-6-large.jpg';
+				} 
+				&::after {
+					background-image: url('../images/website/img-6-large.jpg'); 
+				}
+			}
+			&::after {
+				height: 100vh;
+				width: 100%;
+				opacity: 0;
+			}
+			&.is-loaded {
+				// show items when background images have been loaded
+				opacity: 1;
+				&::after {
+					opacity: 1;
+				}
+				&:hover .pj-title h2 {
+			    		color: #333;
+			    	}
+			}
+			&.is-full-width {
+				// selected item
+				left: 0vw;
+				width: 100vw;
+				@include transition(width 0.4s 0s, z-index 0s 0s, left 0.4s 0s);
+			}
+		}
+		.no-touch & .single-project:hover .pj-title {
+	    		background: rgba(255,255,255,.8);
+	    	}
+	    	.no-touch & .single-project.is-full-width .pj-title,
+	    	.no-touch & .single-project.is-full-width:hover .pj-title {
+	    		background: rgba($color-website,.8);
+	    		color: #fff;
+	    	}
+	    	.no-touch & .single-project.is-full-width:hover .pj-title p {
+	    		color: #fff;
+	    	}
+	}
+    	@include MQ(L) {
+    		.single-project::after {
+    			background-attachment: fixed;
+			@include transform(scale(1.1));
+			@include transition(transform .8s, opacity .5s);
+    		}
+    		.single-project.is-loaded::after {
+			opacity: 0;
+		}
+		.single-project.is-loaded:nth-child(2n) {
+			background: darken($color-website, 2%);
+		}
+	    	.no-touch & .single-project:hover::after, .single-project.is-full-width.is-loaded::after {
+	    		opacity: 1;
+	    		@include transform(scale(1));
+	    	}
+	    	.no-touch & .single-project:hover .pj-title {
+	    		background: rgba(255,255,255,.8);
+	    	}
+	    	.no-touch & .single-project.is-full-width .pj-title,
+	    	.no-touch & .single-project.is-full-width:hover .pj-title {
+	    		background: rgba($color-website,.8);
+	    		color: #fff;
+	    	}
+	    	.no-touch & .single-project.is-full-width:hover .pj-title p {
+	    		color: #fff;
+	    	}
+	}
+}
+
+.pj-title {
+	position: absolute;
+	z-index: 1;
+	left: 0;
+    	top: 100vh/($items*2);
+    	@include transform(translateY(-50%));
+    	@include transition(opacity 1s);
+    	width: 100%;
+    	text-align: center;
+    	opacity: 1;
+	> * {
+		text-shadow: 0 1px 4px rgba(#000, .2);
+		@include font-smoothing;
+	}
+	h2, p {
+		@extend %trans-eio-03;
+	}
+	h2 {
+		color: #fff;
+		font-size: 1.8rem;
+		line-height: 1.5; 
+		font-weight: 700;
+		text-align: center;
+		padding: 10px 30px;
+		display: inline-block;
+		background: rgba($color-website,.8);
+		@include border-radius(5px);
+	}
+	p {
+		color: #ccc;
+		font-size: 1.4rem;
+		font-style: italic;
+		line-height: 1.2;
+		padding: 0;
+		margin: 1.5em auto;
+		display: none;
+		opacity: 0;
+		text-align: center;
+		span {
+			font-size: 1rem;
+		}
+	}
+	@include MQ(M) {
+		top: 50vh;
+		width: calc(100%-20px)/$items;
+		// opacity: 0;
+		@include transform(translateY(-50%) translateX(-20px));
+		.is-loaded & {
+			height: 180px;
+			background: rgba($color-website,.8);
+			opacity: 1;
+			@include transform(translateY(-50%));
+			@include transition(background 0.5s, transform 0.6s, opacity 0.6s, left 0.4s);
+			h2 {
+				margin-top: .8em;
+				padding: 0;
+				font-size: 1.4rem;
+				background: none;
+			}
+			p {
+				opacity: .8;
+				display: block;
+				font-size: 1rem;
+				line-height: 1.5;
+			}
+		}
+		.is-loaded.is-full-width & {
+			// left: (100% - 100%/$items)/2;
+			// left: 0;
+			height: 300px;
+			@include transition(transform 0.6s, opacity 0s, left 0.4s);
+			h2 {
+				margin-top: 0;
+				font-size: 1.8rem;
+			}
+			p {
+				display: block;
+				font-size: 1.4rem;
+				line-height: 1.2;
+				top: 25%;
+			}
+		}
+	}
+	@include MQ(L) {
+		.is-loaded & {
+			background: none;
+		}
+		h2 {
+			font-size: 1.8rem;
+		}
+	}
+}
+
+.single-project.is-loaded:hover {
+	.pj-title h2 {
+		color: #333;
+	}
+	.pj-title p {
+		color: #555;
+	}
+}
+.single-project.is-loaded.is-full-width:hover {
+	.pj-title h2 {
+		color: #fff;
+	}
+	.pj-title p {
+		color: #ccc;
+	}
+}
+.project-info {
+	clear: both;
+	visibility: hidden;
+	opacity: 0;	
+	margin-top: 100vh;
+	padding: 4em 0;
+	cursor: auto;
+	background-color: #333;
+	color: lighten(#666, 30%);
+	@include transition(opacity 0.4s 0s, visibility 0s 0.4s);
+	.is-full-width & {
+		visibility: visible;
+		opacity: 1;
+	}
+	.project-info-list, .project-info-content {
+		width: 90%;
+		max-width: 800px;
+		margin: 0 auto;
+		line-height: 2;
+		color: #eee;
+	}
+	.project-info-list {
+		> li {
+			font-size: 1rem;
+			font-weight: normal;
+			margin-bottom: 15px;
+			padding-bottom: 15px;
+			border-bottom: 1px dashed #666;
+			.info-right-link {
+				color: #ccc;
+				font-weight: 300;
+				text-decoration: underline;
+				&:hover {
+					color: #eee;
+				}
+			}
+		}
+	}
+	.project-info-content {
+		@extend %clearfix;
+		font-size: 1rem;
+		font-weight: normal;
+		.info-right {
+			float: left;
+			margin-top: 15px;
+			font-size: .9rem;
+		}
+	}
+	.project-info-list > li > span, .project-info-content > span {
+		&.info-left {
+			padding: 3px 6px;
+			margin-left: 15px;
+		    	color: #333;
+		    	background: #ccc;
+		    	border-radius: 4px;
+		    	font-weight: 500;
+		    	> i {
+		    		margin-right: 10px;
+		    	}	
+		}
+		&.info-right {
+			display: block;
+			color: #ccc;
+			font-weight: 300;
+			margin-left: 20px;
+		}
+	}
+	@include MQ(M) {
+		position: relative;
+		z-index: 1;
+		.project-info-list > li > span.info-right, .project-info-content > span.info-right {
+			display: inline-block;
+		}
+	}
+}
+.projects-container {
+	.close, .scroll {
+		display: block;
+		z-index: 1;
+		width: 44px;
+		height: 44px;
+		// image replacement
+		overflow: hidden;
+		text-indent: 100%;
+		white-space: nowrap;
+		visibility: hidden;
+		@include transition(transform 1s 0s, visibility 0s 1s);
+	}
+	.close {
+		position: fixed;
+		top: 30px;
+		right: 5%;
+		background: url('../images/website/icon-close-mobile.svg') no-repeat center center;
+		@include transform(scale(0));
+		@include MQ(L) {
+			background-image: url('../images/website/icon-close-desktop.svg');
+		}
+	}
+	.scroll {
+		position: absolute;
+		bottom: 30px;
+		left: 50%;
+		@include transform(translateX(-50%) scale(0));
+		background: url('../images/website/icon-arrow-mobile.svg') no-repeat center center;
+		@include MQ(L) {
+			background-image: url('../images/website/icon-arrow-desktop.svg');
+		}
+	}
+}
+
+.project-is-open {
+	.close, .scroll {
+		visibility: visible;
+		@include transform(scale(1));
+		@include transition(transform 0.4s 0s, visibility 0s 0s);
+	}
+	.scroll {
+		@include transform(translateX(-50%) scale(1));
+		-webkit-animation: translate 1.2s 0.4s;
+	  	-moz-animation: translate 1.2s 0.4s;
+	  	animation: translate 1.2s 0.4s;
+		@include animation-iteration-count(2);
+	}
+}
+
+.no-touch .project-is-open {
+	.close:hover {
+		@include transform(scale(1.2));
+	}
+	.scroll:hover {
+		@include transform(translateX(-50%) scale(1.2));
+	}
+}
+
+@include keyframes(translate) {
+	0% {
+		@include transform(translateX(-50%) scale(1));
+	}
+	50% {
+		@include transform(translateY(10px) translateX(-50%) scale(1));
+	}
+	100% {
+		@include transform(translateX(-50%) scale(1));
+	}
+}

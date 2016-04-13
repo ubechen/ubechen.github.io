@@ -1,0 +1,205 @@
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+
+body {
+	position: relative;
+	&::after, &::before {
+		// these are the 2 half blocks which cover the content once the animation is triggered
+		content: '';
+		height: 50vh;
+		width: 100%;
+		position: fixed;
+		left: 0;
+		background-color: #fff;
+		z-index: 1;
+	
+		//Force Hardware Acceleration
+		@include backface-visibility(hidden);
+		@include transform(translateZ(0));
+		@include transition(transform 0.4s 0.4s);
+	}
+
+	&::before {
+		top: 0;
+		@include transform(translateY(-100%));
+	}
+
+	&::after {
+		bottom: 0;
+		@include transform(translateY(100%));
+	}
+
+	&.page-is-changing::after, &.page-is-changing::before {
+		@include transform(translateY(0));
+		@include transition(transform 0.4s 0s);
+	}
+
+	.body-title {
+		position: absolute;
+	    left: 50%;
+	    top: 25%;
+	    font-family: 'Ubuntu', sans-serif;
+	    font-size: 3rem;
+	    text-transform: uppercase;
+	    color: #fff;
+	    opacity: .8;
+	}
+}
+
+body, html {
+  overflow-x: hidden;
+}
+
+main {
+	position: relative;
+	z-index: 2;
+	//fix bug on iOS
+	height: 100vh;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	padding: 10px;
+	background-color: #fff;
+	//Force Hardware Acceleration in WebKit
+	@include transform(translateZ(0));
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	@include transition(transform $animation-duration);
+	@include transition-timing-function(cubic-bezier(.91,.01,.6,.99)); 
+	
+	&:before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100vh;
+		border: 10px #fff solid;
+		top: 0;
+		left: 0;
+		z-index: 1;
+	}
+
+	.main-content {
+		position: relative;
+		height: calc(100vh - 20px);
+
+		> .main-title, > .main-area {
+			height: 100%;
+			overflow: hidden;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+			h1 {
+				color: #fff;
+			}
+		}
+
+		&::after, &::before {
+			// these are the 2 gradient overlay at the top and bottom of the .main-content - to indicate that you can scroll
+			content: '';
+			position: absolute;
+			left: 0;
+			height: 50px;
+			width: 100%;
+		}
+
+		&::before {
+			top: 0;
+		}
+		&::after {
+			bottom: 0;
+		}
+		&.pg-index, &.pg-about, &.pg-website, &.pg-graphic {
+			display: table;
+			width: 100%;
+			> .main-title, > .main-area  {
+				display: table-cell;
+				vertical-align: middle;
+			}
+		}
+		&.pg-index {
+			background: none;
+			&::after {
+  				background: none;
+			}
+			&::before {
+  				background: none;
+			}
+		}
+		&.pg-about {
+			background-color: $color-about;
+			&::after {
+				// @include linear-gradient(to top, rgba($color-about, 1), rgba($color-about, 0), $fallback: rgba($color-about, 0));
+				background-color: rgba(0, 191, 165, 0);
+  				background-image: -webkit-linear-gradient(bottom, $color-about-d, rgba(0, 191, 165, 0));
+  				background-image: linear-gradient(to top, $color-about-d, rgba(0, 191, 165, 0));
+			}
+			&::before {
+				// @include linear-gradient(to bottom, rgba($color-about, 1), rgba($color-about, 0), $fallback: rgba($color-about, 0));
+				background-color: rgba(0, 191, 165, 0);
+  				background-image: -webkit-linear-gradient(top, $color-about-d, rgba(0, 191, 165, 0));
+  				background-image: linear-gradient(to bottom, $color-about-d, rgba(0, 191, 165, 0));
+			}
+		}
+		&.pg-website {
+			background-color: $color-website;
+			&::after {
+				// @include linear-gradient(to top, rgba($color-website, 1), rgba($color-website, 0), $fallback: rgba($color-website, 0));
+				// background-color: rgba(0, 191, 165, 0);
+  		// 		background-image: -webkit-linear-gradient(bottom, $color-website-d, rgba(0, 191, 165, 0));
+  		// 		background-image: linear-gradient(to top, $color-website-d, rgba(0, 191, 165, 0));
+			}
+			&::before {
+				// @include linear-gradient(to bottom, rgba($color-website, 1), rgba($color-website, 0), $fallback: rgba($color-website, 0));
+				// background-color: rgba(0, 191, 165, 0);
+  		// 		background-image: -webkit-linear-gradient(top, $color-website-d, rgba(0, 191, 165, 0));
+  		// 		background-image: linear-gradient(to bottom, $color-website-d, rgba(0, 191, 165, 0));
+			}
+		}
+		&.pg-graphic {
+			background-color: $color-graphic;
+			&::after {
+				// @include linear-gradient(to top, rgba($color-graphic, 1), rgba($color-graphic, 0), $fallback: rgba($color-graphic, 0));
+				background-color: rgba(0, 191, 165, 0);
+  				background-image: -webkit-linear-gradient(bottom, $color-graphic-d, rgba(0, 191, 165, 0));
+  				background-image: linear-gradient(to top, $color-graphic-d, rgba(0, 191, 165, 0));
+			}
+			&::before {
+				// @include linear-gradient(to bottom, rgba($color-graphic, 1), rgba($color-graphic, 0), $fallback: rgba($color-graphic, 0));
+				background-color: rgba(0, 191, 165, 0);
+  				background-image: -webkit-linear-gradient(top, $color-graphic-d, rgba(0, 191, 165, 0));
+  				background-image: linear-gradient(to bottom, $color-graphic-d, rgba(0, 191, 165, 0));
+			}
+		}
+	} 
+
+	p {
+		width: 90%;
+		max-width: $M;
+		margin: 3em auto;
+		font-size: 1.4rem;
+		line-height: 1.6;
+		color: tint($color-2, 20%);
+		text-align: left;
+	}
+
+	@include MQ(M) {
+		padding: 10px;
+
+		.main-content {
+			height: calc(100vh - 20px);
+		}
+
+		&.pg-index > div {
+			padding-top: 200px;
+		}
+
+		&.pg-index > div {
+			padding-top: 50px;
+		}
+
+		p {
+			font-size: 1.8rem;
+			line-height: 2;
+		}
+	}
+}

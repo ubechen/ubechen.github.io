@@ -1,0 +1,78 @@
+//* Color Settings ------------------------------------ */
+$brand-color: #141B4A;
+$a-color: $brand-color;
+$a-color-hover: darken($a-color, 10%);
+$a-color-active: darken($a-color, 20%);
+$btn-bg: $brand-color;
+$btn-bg-hover: darken($a-color, 10%);
+$btn-bd: $brand-color;
+$btn-bd-hover: darken($brand-color, 10%);
+$text-color: #666;
+$bg-tab: #444;
+
+$color-index: #141B4A;
+$color-index-d: darken($color-index, 5%);
+$color-about: #00C5FF;
+$color-about-d: darken($color-about, 5%);
+$color-website: #15396F;
+$color-website-d: darken($color-website, 5%);
+$color-graphic: #00bfa5;
+$color-graphic-d: darken($color-graphic, 5%);
+$color-nav: #243040;
+$color-2: #283040;
+$white: #ffffff;
+
+//Text-Shadow Settings
+$default-text-shadow-color: rgba(black, 0.8);
+$default-text-shadow-blur: 3px;
+$default-text-shadow-v-offset: 1px;
+$default-text-shadow-h-offset: 1px;
+
+//Box-Shadow Settings
+$default-box-shadow-color: rgba(black, 0.2);
+$default-box-shadow-blur: 3px;
+$default-box-shadow-v-offset: 1px;
+$default-box-shadow-h-offset: 1px;
+
+body {
+	background: $white;
+	color: $text-color;
+}
+.header-nav, .main-content {
+      background: $white;
+}
+::selection {
+	color: $white;
+	background: $brand-color;
+}
+::-moz-selection {
+	color: $white;
+	background: $brand-color;
+}
+
+::-webkit-input-placeholder {
+	color: #222;
+}
+:-moz-placeholder {
+	color: #222;
+	opacity: 1;
+}
+::-moz-placeholder {
+	color: #222;
+	opacity: 1;
+}
+:-ms-input-placeholder {
+	color: #222;
+}
+
+a {
+	color: $a-color;
+	text-decoration: none;
+	@include transition (all .3s);
+	&:hover, &:focus {
+		color: $a-color-hover;
+	}
+	&:active {
+		color: $a-color-active;
+	}
+}

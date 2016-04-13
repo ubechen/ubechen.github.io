@@ -1,0 +1,15 @@
+.Home {
+	background: $color-index url("../images/bg-paper-index.jpg") 0 0 repeat;
+	.heading, .heading-sub {
+		font-family: 'Ubuntu', sans-serif;
+		font-weight: 700;
+		letter-spacing: 1px;
+		color: #fff;
+		text-align: center;
+		text-shadow: 2px 2px 6px rgba(0,0,0,.6);
+	}
+	.heading {
+		margin-top: -50px;
+		margin-bottom: .5em;
+	}
+}
